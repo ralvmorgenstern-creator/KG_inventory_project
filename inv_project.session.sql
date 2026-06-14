@@ -50,3 +50,8 @@ WHERE
   COALESCE(ss.total_sales_qty, 0) = 0
 ORDER BY 
   ui.retail_price DESC 
+
+These two CTE's are the building blocks to this whole non-moving inventory analysis. Unchanged Inventory makes sure that begin count and end count match with the two tables joined together. As stated in the READ ME, some of the numbers were stored as text. 
+I used CAST ::numeric to make sure I was able to do a proper order by. 
+The second CTE then confirms the sales data for each Inventory ID. COALESCE was used to show products with ZERO sales, not zero and NULL
+The query at the bottom then shows what products have a matching begin and end count with COALESCE verifying zero sales. The results are ordered by price. More on that on the next section. 
